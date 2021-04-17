@@ -10,5 +10,6 @@ router.get('/',(req,res) => {
 });
 
 router.post('/getDepartaments', departaments.getDepartaments);
+router.post('/addNewDepartament',departaments.addNewDepartament);
 
 module.exports = router;

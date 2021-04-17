@@ -10,4 +10,14 @@ actions.getDepartaments = (req, res) => {
     });
 };
 
+actions.addNewDepartament = (req, res) =>{
+    console.log('agregamos departamento');
+    let data = req.body;
+    console.log(data);
+    db.query("INSERT INTO departments VALUES (?,?)",[data.idDept, data.nameDept], (err,response) =>{
+        if(err)res.json(err);
+        res.send('good');
+    });
+}
+
 module.exports = actions;
