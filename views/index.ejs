@@ -10,30 +10,34 @@
         <div class="row">
             <div class="col-md">
                 <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
+                    <div class="row no-gutters tarjeta">
                       <div class="col-md-4">
                         <img src="https://image.freepik.com/vector-gratis/reclutamiento-profesionales-que-estudian-perfiles-candidatos_1262-21404.jpg" class="card-img" alt="...">
                       </div>
                       <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">Edit employees</h5>
-                          <p class="card-text">Aquí podrá agregar, elimimar y editar a cualquier empleado</p>
-                        </div>
+                        <a href="#editEmplo" class="ap">
+                          <div class="card-body">
+                            <h5 class="card-title">Edit employees</h5>
+                            <p class="card-text">Aquí podrá agregar, elimimar y editar a cualquier empleado</p>
+                          </div>
+                        </a>
                       </div>
                     </div>
                   </div>
             </div>
             <div class="col-md">
                 <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
+                    <div class="row no-gutters tarjeta">
                       <div class="col-md-4">
                         <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-oficina_114360-1248.jpg" class="card-img" alt="...">
                       </div>
                       <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">Edit departaments</h5>
-                          <p class="card-text">Aquí podrá agregar, eliminar, editar y ver todos los departamentos registrados</p>
-                        </div>
+                        <a href="#updateDept" class="ap">
+                          <div class="card-body">
+                            <h5 class="card-title">Edit departaments</h5>
+                            <p class="card-text">Aquí podrá agregar, eliminar, editar y ver todos los departamentos registrados</p>
+                          </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -42,7 +46,7 @@
         <div class="row">
             <div class="col-md">
                 <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
+                    <div class="row no-gutters tarjeta">
                       <div class="col-md-4">
                         <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-espacio-trabajo-compartido_114360-5249.jpg" class="card-img" alt="...">
                       </div>
@@ -57,7 +61,7 @@
             </div>
             <div class="col-md">
                 <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
+                    <div class="row no-gutters tarjeta">
                       <div class="col-md-4">
                         <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-espacio-trabajo-compartido_114360-5317.jpg" class="card-img" alt="...">
                       </div>
@@ -79,7 +83,7 @@
         <section class="card">
             <div class="row m-3">
                 <div class="col">
-                    <p class="h2 text-center">Employees</p>
+                    <p class="h2 text-center" id="editEmplo">Employees</p>
                     <form>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -109,7 +113,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Departament</label>
-                              <select class="form-control">
+                              <select class="form-control" id="selectEmployee">
                                 <option>Some</option>
                               </select>
                             </div>
@@ -166,9 +170,12 @@
         <hr class="my-4">
 
         <section class="card">
-          <div class="row m-3">
+          <div class="row m-3" id="updateDept">
             <form class="col">
               <p class="h2 text-center">Departaments</p>
+              <div id="alertDepartaments">
+
+              </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="dept">Departament</label>
@@ -181,7 +188,8 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input type="button" value="Add departament" class="btn btn-primary mt-4" onclick="saveNewDept()">
+                  <input type="button" value="Add departament" class="btn btn-primary mt-4" id="saveDepartament" onclick="saveNewDept()">
+                  <input type="button" value="Update departament" class="btn btn-success mt-4" id="updateDepartament">
                 </div>
               </div>
             </form>

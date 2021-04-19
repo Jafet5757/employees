@@ -1,3 +1,13 @@
-.tarjeta{
-    border-radius: 10px;
+.tarjeta:hover{
+    box-shadow: 6px 6px 6px #BABABA;
+}
+
+.ap{
+    color:black;
+}
+.ap:hover{
+    color: black;
+}
+.a:active{
+    color: blue;
 }
