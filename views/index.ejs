@@ -137,8 +137,8 @@
                           <div class="form-group col-md-6">
                             <label for="gender">Gender</label>
                             <select id="gender" class="form-control">
-                                <option>M</option>
-                                <option>F</option>
+                                <option id="M">M</option>
+                                <option id="F">F</option>
                             </select>
                         </div>
                         </div>
@@ -151,19 +151,25 @@
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <input type="button" value="Register employee" class="btn btn-primary" onclick="saveNewEmployee()">
+                                <input type="reset" value="Clean inputs" class="btn btn-outline-danger">
                             </div>
                         </div>
                     </form>
                 </div>
           </div>
           <div class="row m-3">
-            <table class="table table-hover">
+            <table class="table table-hover" id="tableEmployees">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">First name</th>
+                  <th scope="col">Last name</th>
+                  <th scope="col">Birthday</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Hire date</th>
+                  <th scope="col">Departament</th>
+                  <th scope="col">Salary</th>
+                  <th scope="col">Title</th>
                 </tr>
               </thead>
               <tbody>

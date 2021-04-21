@@ -122,7 +122,7 @@ function showDepartaments(depts){
                     <td><input type="button" class="btn btn-danger btn-sm" value="Eliminar" onclick="deleteDepartament('`+dept.dept_no+`')"></td>
                 </tr>`;
         //esto es para agregar al select los depts
-        $('#selectEmployee').append('<option value="'+dept.dept_no+'">'+dept.dept_name+'</option>');
+        $('#selectEmployee').append('<option value="'+dept.dept_no+'" id="'+dept.dept_no+'">'+dept.dept_name+'</option>');
     });
     code += '</tbody>';
     $('#showDpt').html(code);
