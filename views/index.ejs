@@ -86,18 +86,14 @@
                     <p class="h2 text-center" id="editEmplo">Employees</p>
                     <form>
                         <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="empNum">Employees number</label>
+                            <input type="number" class="form-control" id="empNum" name="employeesNumber">
+                          </div>
                             <div class="form-group col-md-6">
                                 <label for="birthday">Birthday</label>
                                 <input type="date" id="birthday" class="form-control" name="birthday">
-                            </div>
-    
-                            <div class="form-group col-md-6">
-                                <label for="gender">Gender</label>
-                                <select id="gender" class="form-control">
-                                    <option>M</option>
-                                    <option>F</option>
-                                </select>
-                            </div>
+                            </div>   
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -138,16 +134,23 @@
                               </select>
                             </div>
                           </div>
+                          <div class="form-group col-md-6">
+                            <label for="gender">Gender</label>
+                            <select id="gender" class="form-control">
+                                <option>M</option>
+                                <option>F</option>
+                            </select>
+                        </div>
                         </div>
                         <div class="form-row pl-1">
                           <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="manager">
+                            <input type="checkbox" class="form-check-input" id="manager" value="yes">
                             <label class="form-check-label" for="manager">Manager</label>
                           </div>
                         </div>  
                         <div class="form-row">
                             <div class="form-group col-md">
-                                <input type="button" value="Register employee" class="btn btn-primary">
+                                <input type="button" value="Register employee" class="btn btn-primary" onclick="saveNewEmployee()">
                             </div>
                         </div>
                     </form>
@@ -246,5 +249,6 @@
     <!--Aquí van los scripts de los cruds-->
     <script src="public/js/general.js"></script>
     <script src="public/js/departaments.js"></script>
+    <script src="public/js/employees.js"></script>
 
 <%- include('partials/_footer'); %>
