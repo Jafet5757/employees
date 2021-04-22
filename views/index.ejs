@@ -43,38 +43,6 @@
                   </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters tarjeta">
-                      <div class="col-md-4">
-                        <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-espacio-trabajo-compartido_114360-5249.jpg" class="card-img" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">Edit titles</h5>
-                          <p class="card-text">Aquí podrá editar, crear, eliminar y ver todos los titulos de los empleados registrados</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-md">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters tarjeta">
-                      <div class="col-md-4">
-                        <img src="https://image.freepik.com/vector-gratis/ilustracion-concepto-espacio-trabajo-compartido_114360-5317.jpg" class="card-img" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">View registered employees</h5>
-                          <p class="card-text">Aquí se mostraran todos los empleados registrados</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-        </div>
         <hr>
         <!-- aquí empiezan las secciones
             *en los empleados el u¿numero de empleado es autocontable
@@ -84,6 +52,9 @@
             <div class="row m-3">
                 <div class="col">
                     <p class="h2 text-center" id="editEmplo">Employees</p>
+                    <div id="alertEmployee">
+
+                    </div>
                     <form>
                         <div class="form-row">
                           <div class="form-group col-md-6">
@@ -150,14 +121,16 @@
                         </div>  
                         <div class="form-row">
                             <div class="form-group col-md">
-                                <input type="button" value="Register employee" class="btn btn-primary" onclick="saveNewEmployee()">
+                                <input type="button" value="Register employee" class="btn btn-primary" id="registerEmployee" onclick="saveNewEmployee()">
                                 <input type="reset" value="Clean inputs" class="btn btn-outline-danger">
+                                <input type="button" value="Update employee" class="btn btn-success" id="updateEmployee">
                             </div>
                         </div>
                     </form>
                 </div>
           </div>
           <div class="row m-3">
+            <label>*Seleccione uno para editarlo</label>
             <table class="table table-hover" id="tableEmployees">
               <thead class="thead-dark">
                 <tr>
@@ -225,7 +198,7 @@
           </div>
           <div class="row m-3">
             <div class="col">
-              <table class="table table-hover" id="showDpt">
+              <table class="table" id="showDpt">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">ID</th>

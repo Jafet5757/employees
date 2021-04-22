@@ -1,5 +1,6 @@
 //Preparar variables
 getEmployees();
+$('#updateEmployee').hide();
 
 //Funciones ajax
 function saveNewEmployee(){
@@ -41,6 +42,53 @@ function getEmployees(){
         },
         error:function(error){
             console.log(error);
+        }
+    });
+}
+
+$('#updateEmployee').click(function(){
+    const data = prepareDataEmployees();
+    $.ajax({
+        url:'/updateEmployee',
+        type:'post',
+        data:data,
+        success:function(response){
+            console.log(response);
+            if(response=='good'){
+                $('#updateEmployee').hide();
+                $('#registerEmployee').show();
+                getEmployees();
+                cleanInputsEmployees();
+                popUp('Se registró con exito', 'Exitoso', 'success');
+            }else{
+                popUp('Ha ocurrido un error', 'Erroneo', 'error');
+            }
+        },
+        error:function(response){
+            console.log(response);
+            popUp('Ha ocurrido un error', 'Erroneo', 'error');
+        }
+    });
+});
+
+function deleteEmployee(idEmp){
+    $.ajax({
+        url:'/deleteEmployee',
+        type:'post',
+        data:{idEmp:idEmp},
+        success:function(response){
+            console.log(response);
+            if(response=='good'){
+                getEmployees();
+                cleanInputsEmployees();
+                popUp('Se eliminó con exito', 'Exitoso', 'success');
+            }else{
+                popUp('Ha ocurrido un error', 'Erroneo', 'error');
+            }
+        },
+        error:function(response){
+            console.log(response);
+            popUp('Ha ocurrido un error', 'Erroneo', 'error');
         }
     });
 }
@@ -96,20 +144,22 @@ function showEmployees(data){
                     <th scope="col">Departament</th>
                     <th scope="col">Salary</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Title</th>
                     </tr>
                 </thead>
                 <tbody>`;
     employees.forEach((employee, i)=>{
-        code += `<tr onclick="prepareEmployeeEdit('`+employee.emp_no+`')">
-                    <th scope="row">`+employee.emp_no+`</th>
-                    <td>`+employee.first_name+`</td>
-                    <td>`+employee.last_name+`</td>
-                    <td>`+transformDateFormat(employee.birth_date)+`</td>
-                    <td>`+employee.gender+`</td>
-                    <td>`+transformDateFormat(employee.hire_date)+`</td>
-                    <td>`+getDepartamentById(dept,empDepts[i].dept_no)+`</td>
-                    <td>`+salaries[i].salary+`</td>
-                    <td>`+titles[i].title+`</td>
+        code += `<tr class="hand">
+                    <th scope="row" onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+employee.emp_no+`</th>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+employee.first_name+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+employee.last_name+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+transformDateFormat(employee.birth_date)+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+employee.gender+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+transformDateFormat(employee.hire_date)+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+getDepartamentById(dept,empDepts[i].dept_no)+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+salaries[i].salary+`</td>
+                    <td onclick="prepareEmployeeEdit('`+employee.emp_no+`')">`+titles[i].title+`</td>
+                    <td><input type="button" class="btn btn-danger btn-sm" value="Eliminar" onclick="deleteEmployee('`+employee.emp_no+`')"></td>
                 </tr>`;
     });
     code += '</tbody>';
@@ -133,6 +183,12 @@ function getDepartamentById(depts, empDeptId){
 }
 
 function prepareEmployeeEdit(idEmp){
+    $('#alertEmployee').html(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Actualice las cajas y guarde los cambios usando el boton verde.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>`);
     $.ajax({
         url:'/getEmployee',
         type:'post',
@@ -164,6 +220,8 @@ function showDataEmpoyeeEdit(data){
     }else{
         document.getElementById('manager').checked = false;
     }
+    $('#registerEmployee').hide();
+    $('#updateEmployee').show();
 }
 
 function transformDateFormat(date){

@@ -78,4 +78,58 @@ actions.getEmployee = (req,res)=>{
     });
 };
 
+actions.updateEmployee = (req,res)=>{
+    const data = req.body;
+    console.log('Update data? '+data.empNum);
+    db.query("UPDATE employees SET birth_date=?, first_name=?,last_name=?, gender=?,hire_date=? WHERE emp_no=?",[data.birthday,data.firstName,data.lastName,data.gender,data.hireDate,data.empNum],(err,response)=>{
+        if(err)return res.json(err);
+        db.query("UPDATE dept_emp SET dept_no=?, from_date=?, to_date=? WHERE emp_no=?",[data.idDepartament,data.fromDate,data.toDate,data.empNum],(err,response)=>{
+            if(err)return res.json(err);
+
+            //si es un manager y si no lo es
+            console.log(data.manager);
+            if(data.manager){
+                db.query("UPDATE dept_manager SET dept_no=?, from_date=?, to_date=? WHERE emp_no=?",[data.idDepartament,data.fromDate,data.toDate,data.empNum],(err,response)=>{
+                    if(err)return res.json(err);
+                    db.query("UPDATE salaries SET salary=?,from_date=?, to_date=? WHERE emp_no=?",[data.salary,data.fromDate,data.toDate,data.empNum],(err,response)=>{
+                        if(err)return res.json(err);
+                        db.query("UPDATE titles SET title=?,from_date=?, to_date=? WHERE emp_no=?",[data.title,data.fromDate,data.toDate,data.empNum],(err,response)=>{
+                            if(err)return res.json(err);
+                            return res.send('good');
+                        });
+                    });
+                });
+            }else{
+                db.query("UPDATE salaries SET salary=?,from_date=?, to_date=? WHERE emp_no=?",[data.salary,data.fromDate,data.toDate,data.empNum],(err,response)=>{
+                    if(err)return res.json(err);
+                    db.query("UPDATE titles SET title=?,from_date=?, to_date=? WHERE emp_no=?",[data.title,data.fromDate,data.toDate,data.empNum],(err,response)=>{
+                        if(err)return res.json(err);
+                        return res.send('good');
+                    });
+                });
+            }
+        });
+    });
+};
+
+actions.deleteEmployee = (req,res)=>{
+    const idEmp = req.body.idEmp;
+    db.query('DELETE FROM dept_emp WHERE emp_no=?',[idEmp],(err,response)=>{
+        if(err) return res.json(err);
+        db.query('DELETE FROM dept_manager WHERE emp_no=?',[idEmp],(err,response)=>{
+            if(err) return res.json(err);
+            db.query('DELETE FROM salaries WHERE emp_no=?',[idEmp],(err,response)=>{
+                if(err) return res.json(err);
+                db.query('DELETE FROM titles WHERE emp_no=?',[idEmp],(err,response)=>{
+                    if(err) return res.json(err);
+                    db.query('DELETE FROM employees WHERE emp_no=?',[idEmp],(err,response)=>{
+                        if(err) return res.json(err);
+                        return res.send('good');
+                    })
+                })
+            });
+        });
+    });
+};
+
 module.exports = actions;

@@ -11,3 +11,6 @@
 .a:active{
     color: blue;
 }
+.hand{
+    cursor: pointer;
+}

@@ -18,5 +18,7 @@ router.post('/updateDepartament', departaments.updateDepartament);
 router.post('/saveNewEmployee',employees.saveNewEmployee);
 router.post('/getEmployees',employees.getEmployees);
 router.post('/getEmployee',employees.getEmployee);
+router.post('/updateEmployee',employees.updateEmployee);
+router.post('/deleteEmployee',employees.deleteEmployee);
 
 module.exports = router;
