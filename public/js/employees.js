@@ -144,7 +144,7 @@ function showEmployees(data){
                     <th scope="col">Departament</th>
                     <th scope="col">Salary</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Title</th>
+                    <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>`;
